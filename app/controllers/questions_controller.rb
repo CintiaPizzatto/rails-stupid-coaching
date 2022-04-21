@@ -3,13 +3,15 @@ class QuestionsController < ApplicationController
   end
 
   def answer
-    @resposta =
-      if params[:question].downcase == "i am going to work right now"
-        "Great"
-      elsif params[:question].end_width?("?")
-        "Silly question, get dressed and go to work!"
-      else
-        "I don´t care, get dressed and go to work!"
-      end
+    @pergunta = params[:question]
+    if @pergunta.blank?
+      @resposta = "I can't hear you!"
+    elsif @pergunta.ends_with?("?")
+      @resposta = "Silly question, get dressed and go to work!"
+    elsif @pergunta.downcase =~ /i am going to work/
+      @resposta = "Great"
+    else
+      @resposta = "I don't care, get dressed and go to work!"
+    end
   end
 end
