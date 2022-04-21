@@ -1,0 +1,18 @@
+<form action="/answer">
+  <input type="text" name="question" value="<%= params[:question] %>">
+  <input type="submit" value="Ask!">
+</form>
+
+
+puts "Hello, I am your coach, what did you want to tell me?"
+
+answer = nil
+
+while answer != ""
+  print "> "
+  message = gets.chomp
+  answer = coach_answer_enhanced(message)
+  puts answer
+end
+
+puts "Great, see ya!"
